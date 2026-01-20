@@ -24,22 +24,22 @@ body{
 .hero{
     height:100vh;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
-    flex-direction:column;
     text-align:center;
     position:relative;
     overflow:hidden;
 }
 
-/* بلوكات ماينكرافت متحركة */
+/* خلفية بلوكات ماينكرافت */
 .block{
     position:absolute;
-    width:50px;
-    height:50px;
+    width:60px;
+    height:60px;
     background-size:cover;
-    animation:fly 12s linear infinite;
-    opacity:0.8;
+    animation:fly 15s linear infinite;
+    opacity:0.9;
 }
 
 @keyframes fly{
@@ -47,14 +47,14 @@ body{
     100%{ transform: translateY(-120vh) rotate(360deg);}
 }
 
-/* النصوص */
+/* نصوص */
 .hero h1{
     font-size:70px;
     font-weight:900;
-    text-shadow:0 0 30px #00ff88;
+    text-shadow:0 0 40px #00ff88;
     animation:pulse 2s infinite alternate;
-    z-index:10;
     position:relative;
+    z-index:10;
 }
 
 @keyframes pulse{
@@ -66,11 +66,11 @@ body{
     margin-top:18px;
     font-size:24px;
     color:#ddd;
-    z-index:10;
     position:relative;
+    z-index:10;
 }
 
-/* الأزرار */
+/* أزرار */
 .buttons{
     margin-top:40px;
     display:flex;
@@ -98,7 +98,6 @@ body{
     box-shadow:0 0 70px #00ff88;
 }
 
-/* ألوان خاصة */
 .youtube{ background:#ff0033; color:white; box-shadow:0 12px 40px rgba(255,0,51,0.6);}
 .discord{ background:#5865F2; color:white; box-shadow:0 12px 40px rgba(88,101,242,0.6);}
 .whatsapp{ background:#25D366; color:black; box-shadow:0 12px 40px rgba(37,211,102,0.6);}
@@ -113,7 +112,6 @@ footer{
     color:#777;
 }
 
-/* قسم ليش CrownCraft */
 section{
     padding:90px 10%;
     text-align:center;
@@ -142,7 +140,6 @@ section{
     transform:translateY(-15px) scale(1.05);
     box-shadow:0 0 40px #00ff88;
 }
-
 </style>
 </head>
 
@@ -159,13 +156,13 @@ section{
         <a class="btn whatsapp" href="https://wa.me/218920709482" target="_blank">📞 اتصال واتساب</a>
     </div>
 
-    <!-- توليد بلوكات ماينكرافت -->
-    <div class="block" style="left:5%; top:0; background-image:url('https://i.imgur.com/2s3Jjrm.png'); animation-duration:14s;"></div>
-    <div class="block" style="left:20%; top:0; background-image:url('https://i.imgur.com/2s3Jjrm.png'); animation-duration:16s;"></div>
-    <div class="block" style="left:35%; top:0; background-image:url('https://i.imgur.com/2s3Jjrm.png'); animation-duration:18s;"></div>
-    <div class="block" style="left:50%; top:0; background-image:url('https://i.imgur.com/2s3Jjrm.png'); animation-duration:20s;"></div>
-    <div class="block" style="left:65%; top:0; background-image:url('https://i.imgur.com/2s3Jjrm.png'); animation-duration:15s;"></div>
-    <div class="block" style="left:80%; top:0; background-image:url('https://i.imgur.com/2s3Jjrm.png'); animation-duration:17s;"></div>
+    <!-- توليد بلوكات -->
+    <div class="block" style="left:5%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:14s;"></div>
+    <div class="block" style="left:20%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:16s;"></div>
+    <div class="block" style="left:35%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:18s;"></div>
+    <div class="block" style="left:50%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:20s;"></div>
+    <div class="block" style="left:65%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:15s;"></div>
+    <div class="block" style="left:80%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:17s;"></div>
 </div>
 
 <section>
@@ -182,4 +179,4 @@ section{
 </footer>
 
 </body>
-    </html>
+</html>
