@@ -2,148 +2,95 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>CrownCraft | Legendary Minecraft</title>
+<title>CrownCraft | Minecraft World</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-
 <style>
+@font-face{
+  font-family:Minecraft;
+  src:url("https://fonts.cdnfonts.com/s/17387/MinecraftRegular-Bmg3.otf");
+}
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Tajawal', sans-serif;
 }
 
 body{
-  background:#050505;
-  color:white;
+  background:#0b0f0c;
+  color:#fff;
+  font-family:Minecraft, monospace;
   overflow:hidden;
 }
 
-/* ===== خلفية عالم ماينكرافت ===== */
-.bg{
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
-    url("https://i.imgur.com/Wv3K6fE.jpg");
-  background-size:cover;
-  background-position:center;
-  animation:zoom 20s infinite alternate ease-in-out;
-  z-index:-3;
-}
-
-@keyframes zoom{
-  from{transform:scale(1)}
-  to{transform:scale(1.15)}
-}
-
-/* ===== جزيئات ===== */
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-}
-
-/* ===== البلوكات ===== */
-.block{
-  position:absolute;
-  width:60px;
-  height:60px;
-  background-image:url("https://i.imgur.com/f1XlWGV.png");
-  background-size:cover;
-  animation:float linear infinite;
-  opacity:.9;
-}
-
-@keyframes float{
-  0%{transform:translateY(120vh) rotate(0deg)}
-  100%{transform:translateY(-140vh) rotate(360deg)}
-}
-
-/* ===== المحتوى ===== */
-.hero{
+/* ===== عالم ===== */
+.world{
+  width:100vw;
   height:100vh;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:repeat(6,1fr);
+  gap:12px;
+  padding:25px;
+  perspective:1000px;
+}
+
+/* ===== بلوك ===== */
+.block{
+  background:
+    linear-gradient(#3b7a3d,#2d5f2f),
+    url("https://i.imgur.com/f1XlWGV.png");
+  background-size:cover;
+  border:3px solid #1e3d1f;
+  box-shadow:inset 0 0 20px rgba(0,0,0,.6),
+             0 20px 40px rgba(0,0,0,.7);
   display:flex;
-  flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
-  padding:20px;
+  cursor:pointer;
+  transition:.35s;
+  transform-style:preserve-3d;
 }
 
-.hero h1{
-  font-size:80px;
-  font-weight:900;
+.block:hover{
+  transform:translateY(-15px) rotateX(10deg) rotateY(-10deg);
+  box-shadow:0 40px 80px rgba(0,255,136,.7);
+}
+
+/* ===== عنوان ===== */
+.title{
+  grid-column:1 / -1;
+  font-size:64px;
   color:#00ff88;
-  text-shadow:0 0 40px #00ff88;
-  animation:titleGlow 2s infinite alternate;
+  text-shadow:0 0 25px #00ff88;
+  animation:glow 1.8s infinite alternate;
 }
 
-@keyframes titleGlow{
-  from{letter-spacing:2px}
-  to{letter-spacing:6px}
-}
-
-.hero p{
-  margin-top:20px;
-  font-size:24px;
-  color:#ddd;
+@keyframes glow{
+  from{opacity:.7}
+  to{opacity:1}
 }
 
 /* ===== أزرار ===== */
-.buttons{
-  margin-top:50px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:25px;
-  justify-content:center;
-}
+.youtube{background:#ff0033;}
+.discord{background:#5865F2;}
+.whatsapp{background:#25D366;color:#000;}
+.call{background:#00ff88;color:#000;}
 
-.btn{
-  padding:18px 44px;
-  border-radius:14px;
-  font-size:20px;
-  font-weight:800;
+.block a{
+  color:inherit;
   text-decoration:none;
-  color:#000;
-  background:#00ff88;
-  box-shadow:0 0 30px rgba(0,255,136,.8);
-  transition:.35s;
-  position:relative;
+  font-size:22px;
 }
 
-.btn::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:14px;
-  box-shadow:0 0 40px rgba(255,255,255,.6);
-  opacity:0;
-  transition:.3s;
-}
-
-.btn:hover{
-  transform:translateY(-10px) scale(1.15);
-}
-
-.btn:hover::after{
-  opacity:1;
-}
-
-.youtube{background:#ff0033;color:white}
-.discord{background:#5865F2;color:white}
-.whatsapp{background:#25D366;color:black}
-
-/* ===== عداد الزوار ===== */
-.visitors{
+/* ===== HUD ===== */
+.hud{
   position:fixed;
   bottom:10px;
-  left:50%;
-  transform:translateX(-50%);
+  right:10px;
   font-size:12px;
-  color:#aaa;
   opacity:.8;
 }
 </style>
@@ -151,67 +98,43 @@ canvas{
 
 <body>
 
-<div class="bg"></div>
-<canvas id="particles"></canvas>
+<div class="world">
 
-<!-- بلوكات -->
-<div class="block" style="left:5%; animation-duration:14s"></div>
-<div class="block" style="left:20%; animation-duration:18s"></div>
-<div class="block" style="left:35%; animation-duration:16s"></div>
-<div class="block" style="left:50%; animation-duration:20s"></div>
-<div class="block" style="left:65%; animation-duration:15s"></div>
-<div class="block" style="left:80%; animation-duration:19s"></div>
+  <div class="block title">👑 CrownCraft World 👑</div>
 
-<div class="hero">
-  <h1>👑 CrownCraft 👑</h1>
-  <p>Legendary Minecraft Content | عالم ماينكرافت الأسطوري</p>
-
-  <div class="buttons">
-    <a class="btn youtube" href="https://www.youtube.com/@CrownCraft-u2c" target="_blank">YouTube</a>
-    <a class="btn discord" href="https://discord.gg/jqTRe85cNG" target="_blank">Discord</a>
-    <a class="btn whatsapp" href="https://chat.whatsapp.com/GWis0Veo8biElbKFrDvR1G" target="_blank">WhatsApp</a>
-    <a class="btn whatsapp" href="https://wa.me/218920709482" target="_blank">Call</a>
+  <div class="block youtube">
+    <a href="https://www.youtube.com/@CrownCraft-u2c" target="_blank">
+      ▶ YouTube
+    </a>
   </div>
+
+  <div class="block discord">
+    <a href="https://discord.gg/jqTRe85cNG" target="_blank">
+      💬 Discord
+    </a>
+  </div>
+
+  <div class="block whatsapp">
+    <a href="https://chat.whatsapp.com/GWis0Veo8biElbKFrDvR1G" target="_blank">
+      👥 WhatsApp
+    </a>
+  </div>
+
+  <div class="block call">
+    <a href="https://wa.me/218920709482" target="_blank">
+      📞 Call
+    </a>
+  </div>
+
 </div>
 
-<div class="visitors">
-  👀 Visitors: <span id="count">0</span>
+<div class="hud">
+  👀 Players Joined: <span id="count">0</span>
 </div>
 
 <script>
-// ===== Particles =====
-const c = document.getElementById("particles");
-const ctx = c.getContext("2d");
-c.width = innerWidth;
-c.height = innerHeight;
-
-let particles = Array.from({length:120},()=>({
-  x:Math.random()*c.width,
-  y:Math.random()*c.height,
-  r:Math.random()*2,
-  dx:(Math.random()-.5),
-  dy:(Math.random()-.5)
-}));
-
-function animate(){
-  ctx.clearRect(0,0,c.width,c.height);
-  ctx.fillStyle="#00ff88";
-  particles.forEach(p=>{
-    p.x+=p.dx;
-    p.y+=p.dy;
-    if(p.x<0||p.x>c.width)p.dx*=-1;
-    if(p.y<0||p.y>c.height)p.dy*=-1;
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fill();
-  });
-  requestAnimationFrame(animate);
-}
-animate();
-
-// ===== Visitor Counter =====
-fetch("https://api.countapi.xyz/hit/crowncraft/visits")
-.then(res=>res.json())
+fetch("https://api.countapi.xyz/hit/crowncraft/world")
+.then(r=>r.json())
 .then(d=>document.getElementById("count").textContent=d.value);
 </script>
 
