@@ -4,11 +4,9 @@
 <meta charset="UTF-8">
 <title>CrownCraft | Minecraft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- خط -->
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+
 *{
     margin:0;
     padding:0;
@@ -17,112 +15,184 @@
 }
 
 body{
-    min-height:100vh;
-    background:#000;
-    color:#fff;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ===== HERO ===== */
+.hero{
+    height:100vh;
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
-}
-
-/* ===== خلفية ماينكرافت ===== */
-.background{
-    position:fixed;
-    inset:0;
-    background:
-        linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-        url("https://i.imgur.com/QdZ1YzP.jpg");
-    background-size:cover;
-    background-position:center;
-    animation:bgMove 20s infinite alternate ease-in-out;
-    z-index:-1;
-}
-
-@keyframes bgMove{
-    0%{transform:scale(1);}
-    100%{transform:scale(1.08);}
-}
-
-/* ===== المحتوى ===== */
-.main{
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    padding-top:120px;
+    position:relative;
+    overflow:hidden;
 }
 
-.main h1{
+/* خلفية بلوكات ماينكرافت */
+.block{
+    position:absolute;
+    width:60px;
+    height:60px;
+    background-size:cover;
+    animation:fly 15s linear infinite;
+    opacity:0.9;
+}
+
+@keyframes fly{
+    0%{ transform: translateY(110vh) rotate(0deg);}
+    100%{ transform: translateY(-120vh) rotate(360deg);}
+}
+
+/* نصوص */
+.hero h1{
     font-size:70px;
     font-weight:900;
-    color:#00ff88;
-    text-shadow:0 0 30px #00ff88;
+    text-shadow:0 0 40px #00ff88;
+    animation:pulse 2s infinite alternate;
+    position:relative;
+    z-index:10;
 }
 
-.main p{
-    margin-top:15px;
-    font-size:20px;
+@keyframes pulse{
+    from{ transform:scale(1);}
+    to{ transform:scale(1.06);}
+}
+
+.hero p{
+    margin-top:18px;
+    font-size:24px;
     color:#ddd;
+    position:relative;
+    z-index:10;
 }
 
-/* ===== الأزرار ===== */
+/* أزرار */
 .buttons{
     margin-top:40px;
     display:flex;
+    gap:22px;
     justify-content:center;
     flex-wrap:wrap;
-    gap:20px;
+    position:relative;
+    z-index:10;
 }
 
-.buttons a{
+.btn{
+    padding:18px 42px;
+    border-radius:60px;
+    font-size:20px;
     text-decoration:none;
-    padding:15px 30px;
-    border-radius:14px;
     font-weight:700;
     color:#000;
-    background:linear-gradient(135deg,#00ff88,#00ccff);
-    box-shadow:0 0 20px rgba(0,255,136,0.5);
+    background:#00ff88;
     transition:0.3s;
+    box-shadow:0 12px 40px rgba(0,255,136,0.6);
 }
 
-.buttons a:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 40px rgba(0,255,136,0.9);
+.btn:hover{
+    transform:translateY(-10px) scale(1.1);
+    box-shadow:0 0 70px #00ff88;
 }
 
-/* ===== عداد الزوار (صغير وتحت) ===== */
-.visitors{
+.youtube{ background:#ff0033; color:white; box-shadow:0 12px 40px rgba(255,0,51,0.6);}
+.discord{ background:#5865F2; color:white; box-shadow:0 12px 40px rgba(88,101,242,0.6);}
+.whatsapp{ background:#25D366; color:black; box-shadow:0 12px 40px rgba(37,211,102,0.6);}
+.youtube:hover{ box-shadow:0 0 70px #ff0033;}
+.discord:hover{ box-shadow:0 0 70px #5865F2;}
+.whatsapp:hover{ box-shadow:0 0 70px #25D366;}
+
+footer{
+    background:#000;
+    padding:28px;
     text-align:center;
+    color:#777;
+}
+
+/* عداد الزوار صغير */
+.visitors{
     font-size:12px;
     color:#aaa;
-    padding:12px 0;
     opacity:0.8;
+    margin-top:6px;
+}
+
+section{
+    padding:90px 10%;
+    text-align:center;
+}
+
+.section-title{
+    font-size:42px;
+    margin-bottom:40px;
+    color:#00ff88;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    padding:35px;
+    border-radius:25px;
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-15px) scale(1.05);
+    box-shadow:0 0 40px #00ff88;
 }
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
-
-<div class="main">
-    <h1>CrownCraft</h1>
-    <p>محتوى ماينكرافت | تحديات | أفكار | إبداع</p>
+<div class="hero">
+    <h1>👑 CrownCraft 👑</h1>
+    <p>ماينكرافت بأسلوب أسطوري | محتوى يبهر من أول ثانية</p>
 
     <div class="buttons">
-        <a href="https://www.youtube.com/@CrownCraft-u2c" target="_blank">YouTube</a>
-        <a href="https://discord.gg/jqTRe85cNG" target="_blank">Discord</a>
-        <a href="https://chat.whatsapp.com/GWis0Veo8biElbKFrDvR1G" target="_blank">WhatsApp Group</a>
-        <a href="https://wa.me/218920709482" target="_blank">Call Me</a>
+        <a class="btn youtube" href="https://www.youtube.com/@CrownCraft-u2c" target="_blank">📺 YouTube</a>
+        <a class="btn discord" href="https://discord.gg/jqTRe85cNG" target="_blank">💬 Discord</a>
+        <a class="btn whatsapp" href="https://chat.whatsapp.com/GWis0Veo8biElbKFrDvR1G" target="_blank">👥 قروب واتساب</a>
+        <a class="btn whatsapp" href="https://wa.me/218920709482" target="_blank">📞 اتصال واتساب</a>
     </div>
+
+    <!-- توليد بلوكات -->
+    <div class="block" style="left:5%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:14s;"></div>
+    <div class="block" style="left:20%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:16s;"></div>
+    <div class="block" style="left:35%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:18s;"></div>
+    <div class="block" style="left:50%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:20s;"></div>
+    <div class="block" style="left:65%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:15s;"></div>
+    <div class="block" style="left:80%; top:0; background-image:url('https://i.imgur.com/6H0r3Wy.png'); animation-duration:17s;"></div>
 </div>
 
-<!-- ===== عداد الزوار ===== -->
-<div class="visitors">
-    عدد زوار الموقع: <span id="visitor-count">0</span>
-</div>
+<section>
+    <h2 class="section-title">🔥 ليش CrownCraft؟</h2>
+    <div class="cards">
+        <div class="card">⚡ محتوى قوي ومختلف</div>
+        <div class="card">👑 هوية فخمة</div>
+        <div class="card">🚀 تطوير مستمر</div>
+    </div>
+</section>
+
+<footer>
+    © 2026 CrownCraft – Legendary Minecraft Experience
+    <div class="visitors">
+        عدد زوار الموقع: <span id="visitor-count">0</span>
+    </div>
+</footer>
 
 <script>
 const counter = document.getElementById("visitor-count");
 
-// عداد الزوار باستخدام CountAPI
+// استخدام CountAPI لتسجيل الزيارات
 fetch("https://api.countapi.xyz/hit/crowncraft/visits")
   .then(response => response.json())
   .then(data => {
